@@ -1,44 +1,153 @@
-<script defer
-  src="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/chat-messenger.js">
-</script>
-<link rel="stylesheet" href="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/themes/chat-messenger-default.css">
-<link rel="stylesheet" href="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/themes/chat-messenger-layout.css">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<script>
-    window.addEventListener("chat-messenger-loaded", () => {
-      chatSdk.registerContext(
-        chatSdk.prebuilts.ces.createContext({
-          deploymentName: "projects/965436911520/locations/us/apps/6e050bb6-f815-4f57-8873-8dcc20c19c5d/deployments/e34eeac2-671d-428e-86c9-d99dee90fe5e",
-          tokenBroker: {
-            enableTokenBroker: true,
-            enableRecaptcha: false
-          }
-        }),
-      );
-    });
-</script>
-<!-- Update the url-allowlist attribute with a comma-separated list of origins allowed to render images -->
-<chat-messenger
-  url-allowlist="*"
->
-  <chat-messenger-container
-    chat-title="Sola"
-    chat-title-icon="https://gstatic.com/dialogflow-console/common/assets/ccai-favicons/conversational_agents.png"
-    enable-file-upload
-    enable-audio-input
-  >
-    <chat-reset-session-button
-      slot="titlebar-actions"
-      title-text="Start new chat"
-    ></chat-reset-session-button>
-    <chat-toggle-dialog-button
-      slot="titlebar-actions"
-      title-text-expanded="Collapse"
-      title-text-collapsed="Expand"
-    ></chat-toggle-dialog-button>
-    <chat-messenger-close-button
-      slot="titlebar-actions"
-      title-text="Close"
-    ></chat-messenger-close-button>
-  </chat-messenger-container>
-</chat-messenger>
+    <title>Sola</title>
+
+    <!-- Website tab icon (favicon) -->
+    <link rel="icon" type="image/png" href="./pink.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/chat-messenger.js"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/themes/chat-messenger-default.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/themes/chat-messenger-layout.css"
+    />
+
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+      
+      body {
+        background-color: #fffafb;
+        font-family: "Lexend", sans-serif;
+      }
+
+      chat-messenger {
+        --chat-messenger-color--surface: #fffafb;
+        --chat-messenger-color--surface-container: #ffffff;
+        --chat-messenger-color--surface-container-high: #fff1f3;
+
+        /* SOLA colours */
+        --chat-messenger-color--primary: #ff8d8d;
+        --chat-messenger-color--primary-container: #ffd6dc;
+        --chat-messenger-color--secondary: #ff8d8d;
+
+        /* Text colours */
+        --chat-messenger-color--on-surface: #403537;
+        --chat-messenger-color--on-surface-variant: #403537;
+        --chat-messenger-color--on-primary: #ffffff;
+        --chat-messenger-color--on-primary-container: #403537;
+        --chat-messenger-color--on-secondary: #403537;
+
+        --chat-messenger-internal-chat-overflow: hidden auto;
+
+        /* Buttons */
+        --chat-messenger-internal-send-icon-background: #ff8d8d;
+        --chat-messenger-internal-send-icon-color: #fffafb;
+
+        /* Borders and links */
+        --chat-messenger-color--outline: #eedadd;
+        --chat-messenger-color--outline-variant: #f5e6e8;
+        --chat-messenger-color--outline-active: #ff8d8d;
+        
+        --chat-messenger-color--link: #42cbc6;
+        --chat-messenger-internal-link-hover-font-color: #ff8d8d;
+        --chat-messenger-internal-link-visited-font-color: #ff8d8d;
+
+        --chat-messenger-internal-link-border: none;
+        --chat-messenger-internal-link-border-radius: 0;
+        --chat-messenger-internal-link-padding: 0;
+        --chat-messenger-internal-link-background: transparent;
+
+        /* Font */
+        --chat-messenger-font-family: "Lexend", sans-serif;
+
+        /* Title bar */
+        --chat-messenger-internal-titlebar-background: #fff1f3;
+        --chat-messenger-internal-titlebar-font-color: #403537;
+
+        /* Quick actions */
+        --chat-messenger-internal-quick-actions-button-background-color: #fff0f2;
+      }
+
+      .sola-disclaimer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 8px 8px;
+        text-align: center;
+        font-family: "Lexend", sans-serif;
+        font-size: 12px;
+        line-height: 1.2;
+        color: #756568;
+        background-color: #fffafb;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      window.addEventListener("chat-messenger-loaded", () => {
+        chatSdk.registerContext(
+          chatSdk.prebuilts.ces.createContext({
+            deploymentName:
+              "projects/965436911520/locations/us/apps/6e050bb6-f815-4f57-8873-8dcc20c19c5d/deployments/e34eeac2-671d-428e-86c9-d99dee90fe5e",
+            tokenBroker: {
+              enableTokenBroker: true,
+              enableRecaptcha: false,
+            },
+          }),
+        );
+      });
+    </script>
+
+    <chat-messenger url-allowlist="*">
+      <chat-messenger-container
+        chat-title="Sola"
+        chat-title-icon="./pink.png"
+        placeholder-text="What’s on your mind about caregiving?"
+      >
+        <chat-reset-session-button
+          slot="titlebar-actions"
+          title-text="Start new chat"
+        ></chat-reset-session-button>
+
+        <chat-toggle-dialog-button
+          slot="titlebar-actions"
+          title-text-expanded="Collapse"
+          title-text-collapsed="Expand"
+        ></chat-toggle-dialog-button>
+
+        <chat-messenger-close-button
+          slot="titlebar-actions"
+          title-text="Close"
+        ></chat-messenger-close-button>
+      </chat-messenger-container>
+    </chat-messenger>
+    <div class="sola-disclaimer">
+      Sola is AI and not a licensed health professional. Please double check responses.
+    </div>
+  </body>
+</html>
