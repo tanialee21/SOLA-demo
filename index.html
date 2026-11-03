@@ -104,6 +104,19 @@
         background-color: #fffafb;
         z-index: 1000;
       }
+
+      @media (max-width: 600px) {
+        chat-messenger {
+          position: fixed;
+          inset: 0 0 calc(48px + env(safe-area-inset-bottom)) 0;
+          width: auto;
+          height: auto;
+        }
+
+        .sola-disclaimer {
+          padding-bottom: calc(8px + env(safe-area-inset-bottom));
+        }
+      }
     </style>
   </head>
 
@@ -127,7 +140,7 @@
       <chat-messenger-container
         chat-title="Sola"
         chat-title-icon="./icons/pink.png"
-        placeholder-text="What’s on your mind about caregiving?"
+        placeholder-text="Ask Sola about caregiving..."
       >
         <chat-reset-session-button
           slot="titlebar-actions"
@@ -141,7 +154,7 @@
       </chat-messenger-container>
     </chat-messenger>
     <div class="sola-disclaimer">
-      Sola is AI and not a licensed health professional. Please double check responses.
+      Sola is AI and not a licensed professional. Please double check responses.
     </div>
   </body>
 </html>
